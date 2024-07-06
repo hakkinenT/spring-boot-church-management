@@ -1,4 +1,4 @@
-package com.hakkinenT.churchmanagement.entities;
+package com.hakkinenT.churchmanagement.models.entities;
 
 import jakarta.persistence.*;
 
