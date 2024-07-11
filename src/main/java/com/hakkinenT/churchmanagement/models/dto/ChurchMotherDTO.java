@@ -1,6 +1,8 @@
 package com.hakkinenT.churchmanagement.models.dto;
 
 import com.hakkinenT.churchmanagement.models.entities.Church;
+import com.hakkinenT.churchmanagement.models.projections.ChurchProjection;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,13 @@ public class ChurchMotherDTO {
         cnpj = entity.getCnpj();
         name = entity.getName();
         email = entity.getEmail();
+    }
+
+    public ChurchMotherDTO(ChurchProjection mother, List<ChurchProjection> congregations) {
+        cnpj = mother.getCnpj();
+        name = mother.getName();
+        email = mother.getEmail();
+        this.congregations = congregations.stream().map(ChurchMinDTO::new).toList();
     }
 
     public String getCnpj() {

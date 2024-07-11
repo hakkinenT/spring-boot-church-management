@@ -1,6 +1,7 @@
 package com.hakkinenT.churchmanagement.models.dto;
 
 import com.hakkinenT.churchmanagement.models.entities.Church;
+import com.hakkinenT.churchmanagement.models.projections.ChurchProjection;
 
 import java.util.Objects;
 
@@ -23,6 +24,12 @@ public class ChurchMinDTO {
         cnpj = entity.getCnpj();
         name = entity.getName();
         email = entity.getEmail();
+    }
+
+    public ChurchMinDTO(ChurchProjection projection) {
+        cnpj = projection.getCnpj();
+        name = projection.getName();
+        email = projection.getEmail();
     }
 
     public String getCnpj() {
