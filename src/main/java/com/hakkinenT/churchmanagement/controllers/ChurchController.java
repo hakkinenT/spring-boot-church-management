@@ -1,6 +1,7 @@
 package com.hakkinenT.churchmanagement.controllers;
 
 import com.hakkinenT.churchmanagement.models.dto.ChurchDTO;
+import com.hakkinenT.churchmanagement.models.dto.ChurchMinDTO;
 import com.hakkinenT.churchmanagement.models.dto.ChurchMotherDTO;
 import com.hakkinenT.churchmanagement.services.ChurchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class ChurchController {
     @GetMapping("/{cnpj}")
     public ResponseEntity<ChurchDTO> findByCnpj(@PathVariable String cnpj){
         ChurchDTO church = churchService.findByCnpj(cnpj);
+        return ResponseEntity.ok(church);
+    }
+
+    @PutMapping("/{cnpj}")
+    public ResponseEntity<ChurchMinDTO> update(@PathVariable String cnpj, @RequestBody ChurchMinDTO dto){
+        ChurchMinDTO church = churchService.update(cnpj, dto);
         return ResponseEntity.ok(church);
     }
 }
