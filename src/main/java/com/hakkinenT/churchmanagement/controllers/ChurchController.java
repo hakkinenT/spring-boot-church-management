@@ -28,4 +28,10 @@ public class ChurchController {
         ChurchMotherDTO mother = churchService.searchChurchMotherAndCongregations(cnpj);
         return ResponseEntity.ok(mother);
     }
+
+    @GetMapping("/{cnpj}")
+    public ResponseEntity<ChurchDTO> findByCnpj(@PathVariable String cnpj){
+        ChurchDTO church = churchService.findByCnpj(cnpj);
+        return ResponseEntity.ok(church);
+    }
 }

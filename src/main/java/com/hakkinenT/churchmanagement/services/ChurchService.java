@@ -50,4 +50,13 @@ public class ChurchService {
 
         return new ChurchMotherDTO(mother, congregations);
     }
+
+    public ChurchDTO findByCnpj(String cnpj){
+        Church church = churchRepository
+                .findById(cnpj)
+                .orElseThrow(() -> new ResourceNotFoundException("Igreja não encontrada."));
+
+        return new ChurchDTO(church);
+
+    }
 }
