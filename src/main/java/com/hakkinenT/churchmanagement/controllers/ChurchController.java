@@ -41,4 +41,10 @@ public class ChurchController {
         ChurchMinDTO church = churchService.update(cnpj, dto);
         return ResponseEntity.ok(church);
     }
+
+    @DeleteMapping("/{cnpj}")
+    public ResponseEntity<Void> delete(@PathVariable String cnpj){
+        churchService.delete(cnpj);
+        return ResponseEntity.noContent().build();
+    }
 }

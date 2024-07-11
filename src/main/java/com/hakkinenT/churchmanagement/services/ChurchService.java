@@ -6,10 +6,13 @@ import com.hakkinenT.churchmanagement.models.dto.ChurchMotherDTO;
 import com.hakkinenT.churchmanagement.models.entities.Church;
 import com.hakkinenT.churchmanagement.models.projections.ChurchProjection;
 import com.hakkinenT.churchmanagement.repositories.ChurchRepository;
+import com.hakkinenT.churchmanagement.services.exceptions.DatabaseException;
 import com.hakkinenT.churchmanagement.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -81,4 +84,16 @@ public class ChurchService {
         }
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void delete(String cnpj){
+        if(!churchRepository.existsById(cnpj)){
+            throw new ResourceNotFoundException("Igreja não encontrada");
+        }
+
+        try {
+            churchRepository.deleteById(cnpj);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException("A igreja não pode ser excluida");
+        }
+    }
 }
