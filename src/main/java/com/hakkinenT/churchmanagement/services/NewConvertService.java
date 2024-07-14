@@ -43,7 +43,7 @@ public class NewConvertService {
     }
 
     @Transactional(readOnly = true)
-    public List<NewConvertDTO> findAll(String cpf){
+    public List<NewConvertDTO> findAll(){
         List<NewConvert> newConvert = newConvertRepository.findAll();
 
         return newConvert.stream().map(NewConvertDTO::new).toList();

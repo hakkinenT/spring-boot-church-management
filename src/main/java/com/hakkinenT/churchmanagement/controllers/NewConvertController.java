@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/new-converts")
@@ -30,5 +31,11 @@ public class NewConvertController {
     public ResponseEntity<NewConvertDTO> findById(@PathVariable String cpf){
         NewConvertDTO newConvertDTO = newConvertService.findById(cpf);
         return ResponseEntity.ok(newConvertDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<NewConvertDTO>> findAll(){
+        List<NewConvertDTO> newConverts = newConvertService.findAll();
+        return ResponseEntity.ok(newConverts);
     }
 }
