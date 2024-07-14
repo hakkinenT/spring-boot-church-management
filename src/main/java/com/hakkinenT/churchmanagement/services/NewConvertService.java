@@ -4,9 +4,12 @@ import com.hakkinenT.churchmanagement.models.dto.NewConvertDTO;
 import com.hakkinenT.churchmanagement.models.entities.NewConvert;
 import com.hakkinenT.churchmanagement.repositories.NewConvertRepository;
 import com.hakkinenT.churchmanagement.repositories.PersonRepository;
+import com.hakkinenT.churchmanagement.services.exceptions.DatabaseException;
 import com.hakkinenT.churchmanagement.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -62,5 +65,18 @@ public class NewConvertService {
         newConvert = newConvertRepository.save(newConvert);
 
         return new NewConvertDTO(newConvert);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void delete(String cpf){
+        if(!newConvertRepository.existsById(cpf)){
+            throw new ResourceNotFoundException("Pessoa não encontrada");
+        }
+
+        try {
+            newConvertRepository.deleteById(cpf);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException("Violação de integração");
+        }
     }
 }

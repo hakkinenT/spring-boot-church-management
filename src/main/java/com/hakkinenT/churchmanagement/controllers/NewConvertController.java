@@ -44,4 +44,10 @@ public class NewConvertController {
         NewConvertDTO newConvertDTO = newConvertService.update(cpf, dto);
         return ResponseEntity.ok(newConvertDTO);
     }
+
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> delete(@PathVariable String cpf){
+        newConvertService.delete(cpf);
+        return ResponseEntity.noContent().build();
+    }
 }
