@@ -49,4 +49,18 @@ public class NewConvertService {
         return newConvert.stream().map(NewConvertDTO::new).toList();
     }
 
+    @Transactional
+    public NewConvertDTO update(String cpf, NewConvertDTO dto){
+        NewConvert newConvert = newConvertRepository.getReferenceById(cpf);
+        newConvert.setFirstName(dto.getFirstName());
+        newConvert.setLastName(dto.getLastName());
+        newConvert.setEmail(dto.getEmail());
+        newConvert.setBirthDate(dto.getBirthDate());
+        newConvert.setMaritalStatus(dto.getMaritalStatus());
+        newConvert.setConversionDate(dto.getConversionDate());
+
+        newConvert = newConvertRepository.save(newConvert);
+
+        return new NewConvertDTO(newConvert);
+    }
 }

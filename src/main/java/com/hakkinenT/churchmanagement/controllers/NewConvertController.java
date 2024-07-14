@@ -38,4 +38,10 @@ public class NewConvertController {
         List<NewConvertDTO> newConverts = newConvertService.findAll();
         return ResponseEntity.ok(newConverts);
     }
+
+    @PutMapping("/{cpf}")
+    public ResponseEntity<NewConvertDTO> update(@PathVariable String cpf, @RequestBody NewConvertDTO dto){
+        NewConvertDTO newConvertDTO = newConvertService.update(cpf, dto);
+        return ResponseEntity.ok(newConvertDTO);
+    }
 }
