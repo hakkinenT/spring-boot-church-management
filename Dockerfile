@@ -6,7 +6,7 @@ COPY pom.xml /app
 WORKDIR /app
 RUN mvn clean install
 
-FROM amazoncorretto:21-al2023
+FROM amazoncorretto:21-al2023 AS exec
 
 COPY --from=build /app/target/churchmanagement-0.0.1-SNAPSHOT.jar /app/app.jar
 
