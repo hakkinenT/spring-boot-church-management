@@ -23,6 +23,9 @@ public class Church {
     @OneToMany(mappedBy = "motherChurch")
     private List<Church> congregations = new ArrayList<>();
 
+    @OneToMany(mappedBy = "church")
+    private List<Person> people = new ArrayList<>();
+
     public Church() {
     }
 
@@ -67,6 +70,10 @@ public class Church {
 
     public List<Church> getCongregations() {
         return congregations;
+    }
+
+    public List<Person> getPeople() {
+        return people;
     }
 
     @Override

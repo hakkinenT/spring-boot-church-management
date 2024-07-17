@@ -11,7 +11,7 @@ public class NewConvert extends Person{
     public NewConvert() {
     }
 
-    public NewConvert(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate) {
-        super(cpf, firstName, lastName, birthDate, email, maritalStatus, conversionDate);
+    public NewConvert(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate, Church church) {
+        super(cpf, firstName, lastName, birthDate, email, maritalStatus, conversionDate, church);
     }
 }

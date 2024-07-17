@@ -5,5 +5,7 @@ CREATE TABLE tb_person(
     birth_date DATE NOT NULL,
     email VARCHAR(255),
     marital_status VARCHAR(255) NOT NULL,
-    conversion_date DATE NOT NULL
+    conversion_date DATE NOT NULL,
+    church_cnpj VARCHAR(14) NOT NULL,
+    FOREIGN KEY (church_cnpj) REFERENCES tb_church(cnpj)
 );

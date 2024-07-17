@@ -20,10 +20,14 @@ public abstract class Person {
     private String maritalStatus;
     private LocalDate conversionDate;
 
+    @ManyToOne
+    @JoinColumn(name = "church_cnpj")
+    private Church church;
+
     public Person() {
     }
 
-    public Person(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate) {
+    public Person(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate, Church church) {
         this.cpf = cpf;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,6 +35,7 @@ public abstract class Person {
         this.email = email;
         this.maritalStatus = maritalStatus;
         this.conversionDate = conversionDate;
+        this.church = church;
     }
 
     public String getCpf() {
@@ -89,6 +94,13 @@ public abstract class Person {
         this.conversionDate = conversionDate;
     }
 
+    public Church getChurch() {
+        return church;
+    }
+
+    public void setChurch(Church church) {
+        this.church = church;
+    }
 
     @Override
     public boolean equals(Object o) {

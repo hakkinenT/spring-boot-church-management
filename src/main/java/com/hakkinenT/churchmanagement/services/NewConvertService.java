@@ -1,7 +1,9 @@
 package com.hakkinenT.churchmanagement.services;
 
 import com.hakkinenT.churchmanagement.models.dto.NewConvertDTO;
+import com.hakkinenT.churchmanagement.models.entities.Church;
 import com.hakkinenT.churchmanagement.models.entities.NewConvert;
+import com.hakkinenT.churchmanagement.repositories.ChurchRepository;
 import com.hakkinenT.churchmanagement.repositories.NewConvertRepository;
 import com.hakkinenT.churchmanagement.repositories.PersonRepository;
 import com.hakkinenT.churchmanagement.services.exceptions.DatabaseException;
@@ -20,6 +22,9 @@ public class NewConvertService {
     @Autowired
     private NewConvertRepository newConvertRepository;
 
+    @Autowired
+    private ChurchRepository churchRepository;
+
     @Transactional
     public NewConvertDTO insert(NewConvertDTO dto){
         NewConvert newConvert = new NewConvert();
@@ -30,6 +35,9 @@ public class NewConvertService {
         newConvert.setBirthDate(dto.getBirthDate());
         newConvert.setMaritalStatus(dto.getMaritalStatus());
         newConvert.setConversionDate(dto.getConversionDate());
+
+        Church church = churchRepository.getReferenceById(dto.getChurchCnpj());
+        newConvert.setChurch(church);
 
         newConvert = newConvertRepository.save(newConvert);
 

@@ -13,8 +13,8 @@ public class Member extends Person{
     public Member() {
     }
 
-    public Member(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate, LocalDate baptismDate) {
-        super(cpf, firstName, lastName, birthDate, email, maritalStatus, conversionDate);
+    public Member(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate, Church church, LocalDate baptismDate) {
+        super(cpf, firstName, lastName, birthDate, email, maritalStatus, conversionDate, church);
         this.baptismDate = baptismDate;
     }
 

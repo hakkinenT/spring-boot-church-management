@@ -12,11 +12,12 @@ public class NewConvertDTO {
     private String email;
     private String maritalStatus;
     private LocalDate conversionDate;
+    private String churchCnpj;
 
     public NewConvertDTO() {
     }
 
-    public NewConvertDTO(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate) {
+    public NewConvertDTO(String cpf, String firstName, String lastName, LocalDate birthDate, String email, String maritalStatus, LocalDate conversionDate, String churchCnpj) {
         this.cpf = cpf;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +25,7 @@ public class NewConvertDTO {
         this.email = email;
         this.maritalStatus = maritalStatus;
         this.conversionDate = conversionDate;
+        this.churchCnpj = churchCnpj;
     }
 
     public NewConvertDTO(NewConvert entity) {
@@ -34,6 +36,7 @@ public class NewConvertDTO {
         this.email = entity.getEmail();
         this.maritalStatus = entity.getMaritalStatus();
         this.conversionDate = entity.getConversionDate();
+        this.churchCnpj = entity.getChurch().getCnpj();
     }
 
     public String getCpf() {
@@ -90,5 +93,13 @@ public class NewConvertDTO {
 
     public void setConversionDate(LocalDate conversionDate) {
         this.conversionDate = conversionDate;
+    }
+
+    public String getChurchCnpj() {
+        return churchCnpj;
+    }
+
+    public void setChurchCnpj(String churchCnpj) {
+        this.churchCnpj = churchCnpj;
     }
 }
