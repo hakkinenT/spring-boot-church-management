@@ -6,6 +6,7 @@ import com.hakkinenT.churchmanagement.models.dto.ChurchMotherDTO;
 import com.hakkinenT.churchmanagement.services.ChurchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,6 +18,7 @@ public class ChurchController {
     @Autowired
     private ChurchService churchService;
 
+    @PreAuthorize("hasRole('ROLE_SECRETARY')")
     @PostMapping
     public ResponseEntity<ChurchDTO> insert(@RequestBody ChurchDTO dto){
         dto = churchService.insert(dto);
@@ -36,12 +38,14 @@ public class ChurchController {
         return ResponseEntity.ok(church);
     }
 
+    @PreAuthorize("hasRole('ROLE_SECRETARY')")
     @PutMapping("/{cnpj}")
     public ResponseEntity<ChurchMinDTO> update(@PathVariable String cnpj, @RequestBody ChurchMinDTO dto){
         ChurchMinDTO church = churchService.update(cnpj, dto);
         return ResponseEntity.ok(church);
     }
 
+    @PreAuthorize("hasRole('ROLE_SECRETARY')")
     @DeleteMapping("/{cnpj}")
     public ResponseEntity<Void> delete(@PathVariable String cnpj){
         churchService.delete(cnpj);
