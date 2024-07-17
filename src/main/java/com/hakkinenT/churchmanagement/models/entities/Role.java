@@ -12,12 +12,21 @@ public class Role {
     private Long id;
     private String authority;
 
+    @OneToOne(mappedBy = "role")
+    private User user;
+
     public Role() {
     }
 
     public Role(Long id, String authority) {
         this.id = id;
         this.authority = authority;
+    }
+
+    public Role(Long id, String authority, User user) {
+        this.id = id;
+        this.authority = authority;
+        this.user = user;
     }
 
     public Long getId() {
@@ -34,6 +43,14 @@ public class Role {
 
     public void setAuthority(String authority) {
         this.authority = authority;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
