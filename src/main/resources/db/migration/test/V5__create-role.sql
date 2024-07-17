@@ -1,0 +1,4 @@
+CREATE TABLE tb_role(
+    id BIGINT IDENTITY PRIMARY KEY NOT NULL,
+    authority VARCHAR(255) NOT NULL
+);

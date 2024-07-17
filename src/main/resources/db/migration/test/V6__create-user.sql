@@ -1,0 +1,7 @@
+CREATE TABLE tb_user(
+    id BIGINT IDENTITY PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    role_id BIGINT UNIQUE NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES tb_role(id)
+);
