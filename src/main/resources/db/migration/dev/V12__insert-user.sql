@@ -1,0 +1,2 @@
+INSERT INTO tb_user(name, email, password, role_id) VALUES ('Lídia', 'lidia@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG',1);
+INSERT INTO tb_user(name, email, password, role_id) VALUES ('Antonio', 'antonio@gmail.com', '$2a$10$eACCYoNOHEqXve8aIWT8Nu3PkMXWBaOxJ9aORUYzfMQCbVBIhZ8tG',2);

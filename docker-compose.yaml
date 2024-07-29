@@ -10,19 +10,14 @@ services:
       - 8080:8080
     depends_on:
       - db
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/church
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=12345678
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    env_file:
+      src/main/resources/.env
 
   db:
     image: postgres
     restart: always
-    environment:
-      - POSTGRES_DB=church
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=12345678
+    env_file:
+      src/main/resources/.env
     volumes:
       - db-app:/var/lib/postgresql/data
 
